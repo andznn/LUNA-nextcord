@@ -20,7 +20,7 @@ import aiohttp
 import asyncio
 
 token = token
-version = "v0.5/2023"
+version = "v1.0/2023"
 pythonv = sys.version[:6]
 nextcordv = nextcord.__version__
 creator = "andzn"
