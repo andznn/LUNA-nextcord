@@ -1,0 +1,108 @@
+{
+  "Fun Commands": {
+    "gpt [prompt]": "```Prompts a message to ChatGPT (alias: ai)```",
+    "meme [category]": "```Sends a random meme from r/memes (use .meme categories for list of categories, alias: memes, memer)```",
+    "porn": "```Sends a spicy picture from r/passionx subreddit (only NSFW channels)```",
+    "hentai": "```Sends a random picture from r/JustHentaiForYou subreddit (only NSFW channels)```",
+    "ecchi": "```Sends a random picture from r/Ecchi_Waifus subreddit (only NSFW channels)```",
+    "cursed": "```Sends a random cursed picture from r/Cursed subreddit```",
+    "logo [company]": "```Sends the logotype of provided company```",
+    "emoji [name]": "```Shows information about chosen emoji```",
+    "celebrity [name]": "```Displays information about a celebrity (usage: .celebrity elon musk)```",
+    "dadjoke": "```Sends a random dad joke (they are all terrible)```",
+    "joke": "```Sends a random joke```",
+    "yesorno": "```Randomly answers yes or no```",
+    "flag [country]": "```Displays provided countries flag```",
+    "foodporn": "```Sends an oddly satisfying food picture```",
+    "carporn": "```Sends an oddly satisfying car picture```",
+    "quote [query]": "```Returns a random quote together with its author based on a query (usage: .query happiness)```",
+    "rhyme [word]": "```Displays words that rhyme with chosen word (usage: .rhyme cat)```",
+    "ask [question]": "```You can ask me a question and I will give you a response (alias: 8ball)```",
+    "dice": "```Rolls the dice and gives a random number 1-6 (alias: roll)```",
+    "coin": "```FLips a coin (alias: flip)```",
+    "advice": "```Gives a random advice... who knows maybe it will help you```",
+    "kanye": "```Sends a random Kanye West quote```",
+    "riddle": "```Gives user a riddle and awaits an answer (usage: .riddle (after bot message give an answer within 60s))```",
+    "trivia [category]": "```Gives user a trivia question (usage: .trivia [category] (after bot message give an answer within 60s) .trivia gives category list)```",
+    "fact": "```DIsplays a random fact```"
+  },
+  "Moderational Commands": {
+    "clear [amount]": "```Clears provided amount of messages from chat (alias: purge)```",
+    "ban [member][reason]": "```Bans tagged user from the server (alias: hammer)```",
+    "unban [member]": "```Unbans provided user from the server (alias: forgive)```",
+    "kick [member][reason]": "```Kicks tagged user from the server (alias: boot)```",
+    "mute [member][reason]": "```Timeouts selected user (alias: timeout)```",
+    "unmute [member]": "```Unmutes selected user```",
+    "slowmode [time]": "```Enables slowmode on current chat (alias: sm, slow)```",
+    "setprefix [prefix]": "```Changes bots prefix for current guild (alias: prefix)```",
+    "toggle [command]": "```Toggles selected command on or off```",
+    "lock [channel][none/--server]": "```Locks down the channel (--server option locks down the whole server!, alias: lockdown)```",
+    "unlock [channel][none/--server]": "```Unlocks the channel (--server option unlocks the whole server!```"
+  },
+  "Utility Commands": {
+    "stats": "```Displays bots statistics (alias: statistics, uptime)```",
+    "invite": "```Creates and sends a server invite for the member (alias: inv)```",
+    "level [member]": "```Displays current members level (alias: lvl, exp)```",
+    "timer [time][reminder]": "```Sets a timer with a reminder (alias: reminder, remind, tr)```",
+    "time [city]": "```Displays current time and date for a given city (alias: now, clock, calendar, date)```",
+    "ver": "```Displays bots version (alias: version, v)```",
+    "say [message]": "```Repeats users message (alias: repeat)```",
+    "announce [message]": "```Announces users message with a @everyone tag (alias: shout)```",
+    "ping": "```Displays bot latency (alias: latency)```",
+    "avatar [member]": "```Grabs users avatar and sends it (alias: pic, pfp)```",
+    "serverinfo": "```Displays information about current server (alias: si, info, server)```",
+    "profile": "```Displays information about mentioned user",
+    "weather [city]": "```Displays weather forecast for a chosen city (alias: forecast)```",
+    "translate [from][to][query]": "```Translates given query to chosen language (usage: .translate pl ja pieklo)```",
+    "airline [name]": "```Displays information about chosen airline```"
+  },
+  "Anime Commands": {
+    "anime [title]": "```Displays information about chosen anime title```",
+    "manga [title]": "```Displays information about chosen manga title```",
+    "character [name]": "```Displays information about chosen anime/manga character```",
+    "animelist [type][name]": "```Displays link to chosen users animelist (types: anilist, myanimelist)```"
+  },
+  "Money Commands": {
+    "exchange [pair]": "```Shows current exchange rates for a currency pair (usage: .exchange USD_EUR)(alias: change, pair)```",
+    "crypto [symbol]": "```Displays current price of a cryptocurrency pair (usage: .crypto BTCLTC)```",
+    "inflation [country]": "```Displays current inflation of a given country```"
+  },
+  "Food Commands": {
+    "recipe [query]": "```Returns a recipe for chosen dish```",
+    "nutrition [name]": "```Displays nutrition facts about a chosen food/dish (alias: calorie, calories)```",
+    "cocktail search [name]": "```Displays information about searched cocktail and how to prepare it (usage: .cocktail search margarita)```",
+    "cocktail random": "```Displays information about random cocktail and how to prepare it```"
+  },
+  "Music Commands": {
+    "music artist [name]": "```Displays information about provided artist (usage: .music artist Bjork)```",
+    "music album [title]": "```Displays information about provided album (usage: .music album audiotele)```",
+    "music song [title]": "```Displays information about provided song (usage: .music song new again)```",
+    "music lyric [title]": "```Displays link to genius lyrics of chosen song (usage: .music lyrics medicine)```"
+  },
+  "Astro Commands": {
+    "planet [name]": "```Displays astronomical information about chosen planet```",
+    "astrophoto": "```Sends a random astronomy photo of a day, provided by NASA (alias: APOD, apod)```",
+    "horoscope [sign][period]": "```Displays horoscope for given sign and a given period (usage: .horoscope [sign] today/tomorrow/yesterday```"
+  },
+  "Animals Commands": {
+    "cat [breed]": "```Displays information about a cat breed you choose (alias: cats)```",
+    "dog [breed]": "```Displays information about a dog breed you choose (alias: dogs)```",
+    "randomfox": "```Sends a random picture of a cute fox```",
+    "randomcat": "```Sends a random picture of a cute cat```",
+    "randomdog": "```Sends a random picture of a cute dog```",
+    "randomshiba": "```Sends a random picture of a shiba dog (alias: shiba)```",
+    "randomfrog": "```Sends a random picture of a frog (we are getting oddly specific)```",
+    "randomcapybara": "```Sends a random picture of a capybara (alias: capybara, capy, randomcapy)```",
+    "randomdachshund": "```Sends a random picture of a dachshund dog, yeah... (alias: dachshund, dachshunds)```"
+  },
+  "Other Commands": {
+    "car [model]": "```Displays basic information about chosen car model (alias: cars, vehicle, carlookup)```",
+    "iplookup [ip]": "```Displays info about provided IP address```",
+    "urllookup [url]": "```Displays info about provided URL address```",
+    "vinlookup [vin]": "```Displays info about provided car VIN number (alias: vin)```",
+    "city [name]": "```Displays information about chosen city (usage: .city new york)```",
+    "dictionary [word]": "```Displays a dictionary definition of a provided word (alias: dict)```",
+    "lorem [paragraphs]": "```Returns a lorem ipsum sample text with given paragraphs (max: 3)(usage: .lorem 3)```",
+    "wiki [query]": "```Displays a shortened wikipedia description of a given query (alias: wikipedia)(usage: .wiki warsaw)```"
+  }
+}
