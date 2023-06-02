@@ -2,7 +2,7 @@
 """
 This is a main file of LUNA✱ Discord Bot Created by Andrew
 Current version: v1.0/2023
-Newest added functionality: Added more fun commands
+Newest added functionality: Added movie search commands
 Updated: 02.06.2023
 """
 # ----------------------------------------------------- Libraries ------------------------------------------------------
@@ -75,7 +75,9 @@ extensions = [
     "cogs.music",
     "cogs.astro",
     "cogs.animals",
-    "cogs.air"
+    "cogs.air",
+    "cogs.movies",
+    "cogs.cars"
 ]
 
 if __name__ == "__main__":
@@ -83,7 +85,6 @@ if __name__ == "__main__":
         bot.load_extension(ext)
         print(Fore.GREEN + f"{seperator}")
         print(Fore.GREEN + f"{ext} commands Cog has been loaded successfully!")
-        print(Fore.GREEN + f"On {now}")
         print(Fore.GREEN + f"{seperator}")
 
 
@@ -404,6 +405,9 @@ class Dropdown(nextcord.ui.Select):
             nextcord.SelectOption(label="Music Commands", description=" "),
             nextcord.SelectOption(label="Astro Commands", description=" "),
             nextcord.SelectOption(label="Animals Commands", description=" "),
+            nextcord.SelectOption(label="Air Commands", description=" "),
+            nextcord.SelectOption(label="Movie Commands", description=" "),
+            nextcord.SelectOption(label="Car Commands", description=" "),
             nextcord.SelectOption(label="Other Commands", description=" ")
         ]
         super().__init__(placeholder='Select help subject', min_values=1, max_values=1, options=options)
@@ -499,8 +503,38 @@ class Dropdown(nextcord.ui.Select):
                                  icon_url="https://i.ibb.co/yBXMVKG/icon.png")
             return await interaction.response.send_message(embed=embed)
 
-        if self.values[0] == 'Other Commands':
+        if self.values[0] == 'Air Commands':
             pageNum = 9
+            pageTitle = list(helpGuide)[pageNum]
+            embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
+            for key, val in helpGuide[pageTitle].items():
+                embed.add_field(name="." + key, value=val, inline=True)
+                embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn",
+                                 icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            return await interaction.response.send_message(embed=embed)
+
+        if self.values[0] == 'Movie Commands':
+            pageNum = 10
+            pageTitle = list(helpGuide)[pageNum]
+            embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
+            for key, val in helpGuide[pageTitle].items():
+                embed.add_field(name="." + key, value=val, inline=True)
+                embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn",
+                                 icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            return await interaction.response.send_message(embed=embed)
+
+        if self.values[0] == 'Car Commands':
+            pageNum = 11
+            pageTitle = list(helpGuide)[pageNum]
+            embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
+            for key, val in helpGuide[pageTitle].items():
+                embed.add_field(name="." + key, value=val, inline=True)
+                embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn",
+                                 icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            return await interaction.response.send_message(embed=embed)
+
+        if self.values[0] == 'Other Commands':
+            pageNum = 12
             pageTitle = list(helpGuide)[pageNum]
             embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
             for key, val in helpGuide[pageTitle].items():
@@ -589,18 +623,19 @@ async def toggle(ctx, *, command):
 async def stats(ctx):
     global us, um, uh, ud
     embed = nextcord.Embed(title='My Stats', description='Uptime:', timestamp=ctx.message.created_at, color=lunaorange)
-    embed.add_field(name=f"Days: ", value=ud, inline=True)
-    embed.add_field(name=f"Hours: ", value=uh, inline=True)
-    embed.add_field(name=f"Minutes: ", value=um, inline=True)
-    embed.add_field(name=f"Seconds: ", value=us, inline=True)
+    embed.add_field(name=f"Days: ", value=ud, inline=False)
+    embed.add_field(name=f"Hours: ", value=uh, inline=False)
+    embed.add_field(name=f"Minutes: ", value=um, inline=False)
+    embed.add_field(name=f"Seconds: ", value=us, inline=False)
     embed.add_field(name=f"Name: ", value=f"{bot.user.name}")
     embed.add_field(name=f"Creator: ", value=f"{creator}")
     embed.add_field(name=f"Version: ", value=f"{version}")
     embed.add_field(name=f"Nextcord: ", value=f"{nextcordv}")
     embed.add_field(name=f"Python: ", value=f"{pythonv}")
     embed.add_field(name=f"Help Panel: ", value=f"Use .help")
-    embed.add_field(name=f"Based on Nextcord", value=f"https://docs.nextcord.dev/en/stable/")
-    embed.set_image(url="https://i.ibb.co/yBXMVKG/icon.png")
+    embed.add_field(name=f"Based on Nextcord", value=f"https://docs.nextcord.dev/en/stable/", inline=False)
+    embed.add_field(name=f"GitHub Repository", value=f"https://github.com/andzn986/LUNA-nextcord/", inline=False)
+    embed.set_image(url="https://i.ibb.co/jrNLFw2/lunatrans.png")
     embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
     await ctx.send(embed=embed)
 
@@ -837,38 +872,6 @@ async def weather(ctx: commands.Context, *, city):
             await ctx.send(embed=embed)
 
 
-@bot.command(aliases=["carlookup", "cars", "vehicle"])
-async def car(ctx, *, model):
-    model = model
-    api_url = 'https://api.api-ninjas.com/v1/cars?model={}'.format(model)
-    response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-    info = response[0]
-    car_class = info["class"]
-    cylinders = info["cylinders"]
-    drive = info["drive"]
-    fuel_type = info["fuel_type"]
-    make = info["make"]
-    model = info["model"]
-    transmission = info["transmission"]
-    year = info["year"]
-
-    embed = nextcord.Embed(title=f":wheel: {model}",
-                           description=f"Here's what I found about ``{model}``",
-                           color=lunaorange,
-                           timestamp=ctx.message.created_at)
-    embed.add_field(name="Make:", value=f"{make}")
-    embed.add_field(name="Model:", value=f"{model}")
-    embed.add_field(name="Car Class:", value=f"{car_class}")
-    embed.add_field(name="Cylinders:", value=f"{cylinders}...")
-    embed.add_field(name="Drive:", value=f"{drive}")
-    embed.add_field(name="Fuel:", value=f"{fuel_type}")
-    embed.add_field(name="Transmission:", value=f"{transmission}")
-    embed.add_field(name="Year:", value=f"{year}")
-    embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-
-    await ctx.send(embed=embed)
-
-
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def iplookup(ctx, *, ip):
@@ -939,37 +942,6 @@ async def urllookup(ctx, *, url):
     embed.add_field(name="Timezone:", value=f"{timezone}")
     embed.add_field(name="ISP:", value=f"{isp}")
     embed.add_field(name="URL:", value=f"https://{url}/")
-    embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-
-    await ctx.send(embed=embed)
-
-
-@bot.command(aliases=["vin"])
-async def vinlookup(ctx, *, vin):
-    api_url = 'https://api.api-ninjas.com/v1/vinlookup?vin={}'.format(vin)
-    response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-    info = response
-    vin = info["vin"]
-    country = info["country"]
-    manufacturer = info["manufacturer"]
-    region = info["region"]
-    wmi = info["wmi"]
-    vds = info["vds"]
-    vis = info["vis"]
-    years = info["years"][0]
-
-    embed = nextcord.Embed(title=f":mag: VIN Lookup for {vin}",
-                           description=f"Here's what I found about ``{vin}``",
-                           color=lunaorange,
-                           timestamp=ctx.message.created_at)
-    embed.add_field(name="VIN:", value=f"{vin}")
-    embed.add_field(name="Country:", value=f"{country}")
-    embed.add_field(name="Manufacturer:", value=f"{manufacturer}")
-    embed.add_field(name="Region:", value=f"{region}")
-    embed.add_field(name="WMI:", value=f"{wmi}")
-    embed.add_field(name="VDS:", value=f"{vds}")
-    embed.add_field(name="VIS:", value=f"{vis}")
-    embed.add_field(name="Years:", value=f"{years}+")
     embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
     await ctx.send(embed=embed)

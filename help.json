@@ -14,7 +14,6 @@
     "yesorno": "```Randomly answers yes or no```",
     "flag [country]": "```Displays provided countries flag```",
     "foodporn": "```Sends an oddly satisfying food picture```",
-    "carporn": "```Sends an oddly satisfying car picture```",
     "quote [query]": "```Returns a random quote together with its author based on a query (usage: .query happiness)```",
     "rhyme [word]": "```Displays words that rhyme with chosen word (usage: .rhyme cat)```",
     "ask [question]": "```You can ask me a question and I will give you a response (alias: 8ball)```",
@@ -95,11 +94,24 @@
     "randomcapybara": "```Sends a random picture of a capybara (alias: capybara, capy, randomcapy)```",
     "randomdachshund": "```Sends a random picture of a dachshund dog, yeah... (alias: dachshund, dachshunds)```"
   },
-  "Other Commands": {
+  "Air Commands": {
+    "airline [name]": "```Displays information about chosen airline```",
+    "airport [name]": "```Displays information about chosen airport```",
+    "air [city]": "```Displays air quality information in chosen city```"
+  },
+  "Movie Commands": {
+    "movie [title]": "```Displays information about chosen movie (usage: .movie blade runner)```",
+    "series [title]": "```Displays information about chosen TV series (usage: .series black mirror)```"
+  },
+  "Cars Commands": {
     "car [model]": "```Displays basic information about chosen car model (alias: cars, vehicle, carlookup)```",
+    "vinlookup [vin]": "```Displays info about provided car VIN number (alias: vin)```",
+    "carporn": "```Sends an oddly satisfying car picture```",
+    "jdm": "```Sends a random JDM car photo```"
+  },
+  "Other Commands": {
     "iplookup [ip]": "```Displays info about provided IP address```",
     "urllookup [url]": "```Displays info about provided URL address```",
-    "vinlookup [vin]": "```Displays info about provided car VIN number (alias: vin)```",
     "city [name]": "```Displays information about chosen city (usage: .city new york)```",
     "dictionary [word]": "```Displays a dictionary definition of a provided word (alias: dict)```",
     "lorem [paragraphs]": "```Returns a lorem ipsum sample text with given paragraphs (max: 3)(usage: .lorem 3)```",

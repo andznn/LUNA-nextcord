@@ -39,6 +39,7 @@ class air(commands.Cog):
             embed.add_field(name="ICAO:", value=f"{icao}")
             embed.add_field(name="Fleet:", value=f"")
 
+            print(fleet)
             for (k, v) in fleet.items():
                 embed.add_field(name=f"`{k}`", value=f"{v}")
 
@@ -124,7 +125,17 @@ class air(commands.Cog):
                                    color=lunaorange,
                                    timestamp=ctx.message.created_at)
             embed.add_field(name="Name:", value=f"{name}")
-            embed.add_field(name="Overall Quality:", value=f"`{overall_aqi}`")
+            if overall_aqi < 50:
+                embed.add_field(name="Score:", value=f"GOOD QUALITY")
+            elif overall_aqi < 100:
+                embed.add_field(name="Score:", value=f"MODERATE QUALITY")
+            elif overall_aqi < 150:
+                embed.add_field(name="Score:", value=f"UNHEALTHY FOR SENSITIVE GROUPS")
+            elif overall_aqi < 200:
+                embed.add_field(name="Score:", value=f"UNHEALTHY")
+            else:
+                pass
+            embed.add_field(name="Overall AQI:", value=f"`{overall_aqi}`", inline=False)
             embed.add_field(name="CO:", value=f"Concentration: `{coc}` | AQI: `{coo}`", inline=False)
             embed.add_field(name="PM10:", value=f"Concentration: `{pm10}` | AQI: `{pm10o}`", inline=False)
             embed.add_field(name="SO2:", value=f"Concentration: `{so2}` | AQI: `{so2o}`", inline=False)

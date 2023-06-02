@@ -542,25 +542,6 @@ class fun(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def carporn(self, ctx):
-        subreddit = reddit.subreddit('carporn')
-        top_posts = subreddit.hot(limit=100)
-
-        carporn = [post for post in top_posts if
-                   not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
-
-        if not carporn:
-            await ctx.send('No cars found :(')
-            return
-
-        random_car = random.choice(carporn)
-        embed = nextcord.Embed(title=random_car.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_car.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-
-        await ctx.send(embed=embed)
-
     @commands.command(aliases=["rhymes"])
     async def rhyme(self, ctx, *, word):
         query = word
