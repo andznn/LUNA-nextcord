@@ -1,9 +1,9 @@
 # ---------------------------------------------------- LUNA✱BOT --------------------------------------------------------
 """
 This is a main file of LUNA✱ Discord Bot Created by Andrew
-Current version: v0.8/2023
+Current version: v1.0/2023
 Newest added functionality: Added more fun commands
-Updated: 30.05.2023
+Updated: 02.06.2023
 """
 # ----------------------------------------------------- Libraries ------------------------------------------------------
 import nextcord
