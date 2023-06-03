@@ -27,30 +27,6 @@ import os
 import wikipedia
 import time
 
-
-# -------------------------------------------------- Dashboard setup ---------------------------------------------------
-class myBot(commands.Bot):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.ipc = ipc.Server(self, secret_key="LUNA")
-
-    async def on_ipc_read(self):
-        print(Fore.GREEN + f"{seperator}")
-        print(Fore.GREEN + f"IPC is ready!")
-        print(Fore.GREEN + f"{seperator}")
-
-    async def on_ipc_error(self, endpoint, error):
-        print(Fore.RED + f"{seperator}")
-        print(Fore.RED + f"{endpoint} raised error {error}")
-        print(Fore.RED + f"{seperator}")
-
-    async def on_ready(self):
-        print(Fore.GREEN + f"{seperator}")
-        print(Fore.GREEN + f"Ready!")
-        print(Fore.GREEN + f"{seperator}")
-
-
 # ----------------------------------------------- Custom prefixes setup ------------------------------------------------
 def get_prefix(client, message):
     with open('prefixes.json', 'r') as f:
