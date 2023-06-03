@@ -23,7 +23,7 @@
     "kanye": "```Sends a random Kanye West quote```",
     "riddle": "```Gives user a riddle and awaits an answer (usage: .riddle (after bot message give an answer within 60s))```",
     "trivia [category]": "```Gives user a trivia question (usage: .trivia [category] (after bot message give an answer within 60s) .trivia gives category list)```",
-    "fact": "```DIsplays a random fact```"
+    "fact": "```Displays a random fact```"
   },
   "Moderational Commands": {
     "clear [amount]": "```Clears provided amount of messages from chat (alias: purge)```",
@@ -36,7 +36,8 @@
     "setprefix [prefix]": "```Changes bots prefix for current guild (alias: prefix)```",
     "toggle [command]": "```Toggles selected command on or off```",
     "lock [channel][none/--server]": "```Locks down the channel (--server option locks down the whole server!, alias: lockdown)```",
-    "unlock [channel][none/--server]": "```Unlocks the channel (--server option unlocks the whole server!```"
+    "unlock [channel][none/--server]": "```Unlocks the channel (--server option unlocks the whole server!```",
+    "channel create [type][name]": "```Creates channel of a given type with a given name (usage: .channel create text test)```"
   },
   "Utility Commands": {
     "stats": "```Displays bots statistics (alias: statistics, uptime)```",

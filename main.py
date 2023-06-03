@@ -1,13 +1,13 @@
 # ---------------------------------------------------- LUNA✱BOT --------------------------------------------------------
 """
 This is a main file of LUNA✱ Discord Bot Created by Andrew
-Current version: v1.0/2023
-Newest added functionality: Added movie search commands
-Updated: 02.06.2023
+Current version: v1.1/2023
+Newest added functionality: Fixed bugs and made some adjustments
+Updated: 03.06.2023
 """
 # ----------------------------------------------------- Libraries ------------------------------------------------------
 import nextcord
-from nextcord.ext import commands, tasks
+from nextcord.ext import *
 import json
 import random
 import datetime
@@ -25,7 +25,30 @@ import requests
 import dateutils
 import os
 import wikipedia
-import aiosqlite
+import time
+
+
+# -------------------------------------------------- Dashboard setup ---------------------------------------------------
+class myBot(commands.Bot):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.ipc = ipc.Server(self, secret_key="LUNA")
+
+    async def on_ipc_read(self):
+        print(Fore.GREEN + f"{seperator}")
+        print(Fore.GREEN + f"IPC is ready!")
+        print(Fore.GREEN + f"{seperator}")
+
+    async def on_ipc_error(self, endpoint, error):
+        print(Fore.RED + f"{seperator}")
+        print(Fore.RED + f"{endpoint} raised error {error}")
+        print(Fore.RED + f"{seperator}")
+
+    async def on_ready(self):
+        print(Fore.GREEN + f"{seperator}")
+        print(Fore.GREEN + f"Ready!")
+        print(Fore.GREEN + f"{seperator}")
 
 
 # ----------------------------------------------- Custom prefixes setup ------------------------------------------------
@@ -81,11 +104,26 @@ extensions = [
 ]
 
 if __name__ == "__main__":
+    print(Fore.MAGENTA + f"{seperator}")
+    print(Fore.WHITE + f"Loading " + Fore.MAGENTA + "LUNA✱" + Fore.WHITE + " Bot...")
+    print(Fore.MAGENTA + f"{seperator}")
+    time.sleep(0.25)
+    print(Fore.YELLOW + f"{seperator}")
+    print(Fore.WHITE + f"Attempting to load cogs!")
+    print(Fore.YELLOW + f"{seperator}")
+    time.sleep(0.25)
+    print(Fore.GREEN + f"{seperator}")
+    time.sleep(0.25)
     for ext in extensions:
         bot.load_extension(ext)
-        print(Fore.GREEN + f"{seperator}")
-        print(Fore.GREEN + f"{ext} commands Cog has been loaded successfully!")
-        print(Fore.GREEN + f"{seperator}")
+        print(Fore.WHITE + f"Name: " + Fore.GREEN + f"{ext}" + Fore.WHITE + " Status: " + Fore.GREEN + "loaded")
+        time.sleep(0.25)
+    time.sleep(0.25)
+    print(Fore.GREEN + f"{seperator}")
+    time.sleep(0.25)
+    print(Fore.YELLOW + f"{seperator}")
+    print(Fore.WHITE + f"All cogs loaded successfully!")
+    print(Fore.YELLOW + f"{seperator}")
 
 
 @bot.command()
@@ -206,7 +244,7 @@ async def reload(ctx, *, cog=None):
         embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
         await ctx.send(embed=embed)
         print(Fore.YELLOW + f"{seperator}")
-        print(Fore.YELLOW + "Someone tried to use .unload... i wont let them.")
+        print(Fore.YELLOW + "Someone tried to use .reload... i wont let them.")
         print(Fore.YELLOW + f"{seperator}")
 
 
@@ -238,13 +276,15 @@ async def level_up(users, user, message):
 # ------------------------------------------ On ready function and bot events ------------------------------------------
 @bot.event
 async def on_ready():
-    print(Fore.BLUE + f"{seperator}")
-    print(f"Logged in as {bot.user.name} on {now.strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"Version number {version}")
-    print(f"Python version {pythonv}")
-    print(f"Nextcord version {nextcordv}")
-    print(f"Created by {creator}")
-    print(f"{seperator}")
+    print(Fore.MAGENTA + f"{seperator}")
+    print(Fore.WHITE + f"Logged in as: " + Fore.MAGENTA + f"{bot.user.name}")
+    print(Fore.WHITE + f"On: " + Fore.MAGENTA + f"{now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(Fore.WHITE + f"Version number: " + Fore.MAGENTA + f"{version}")
+    print(Fore.MAGENTA + f"{seperator}")
+    print(Fore.WHITE + f"Python version: " + Fore.MAGENTA + f"{pythonv}")
+    print(Fore.WHITE + f"Nextcord version: " + Fore.MAGENTA + f"{nextcordv}")
+    print(Fore.MAGENTA + f"{seperator}")
+
     await bot.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.playing,
                                                          name=f"On {len(bot.guilds)} servers!"),
                               status=nextcord.Status.online)
@@ -273,22 +313,38 @@ async def on_member_join(member):
 
 @bot.event
 async def on_message(message):
-    if not message.author.bot:
-        with open('users.json', 'r') as f:
-            users = json.load(f)
+    try:
+        if not message.author.bot:
+            with open('users.json', 'r') as f:
+                users = json.load(f)
 
-        await update_data(users, message.author)
-        await add_experience(users, message.author, 2)
-        await level_up(users, message.author, message)
+            await update_data(users, message.author)
+            await add_experience(users, message.author, 2)
+            await level_up(users, message.author, message)
 
-        with open('users.json', 'w') as f:
-            json.dump(users, f, indent=4)
+            with open('users.json', 'w') as f:
+                json.dump(users, f, indent=4)
 
-    await bot.process_commands(message)
+        await bot.process_commands(message)
+
+    except:
+        embed = nextcord.Embed(title=f':x: I cant respond to direct messages!',
+                               description='`Try using one of my commands on our mutual guilds`',
+                               color=lunablue)
+        embed.add_field(name='You can use ```.help```', value=f'to view my commands on any mutual server')
+        embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+        embed.set_thumbnail(url="https://i.ibb.co/yBXMVKG/icon.png")
+        await message.author.send(embed=embed)
 
 
 @bot.event
 async def on_guild_join(guild):
+    print(Fore.GREEN + f"{seperator}")
+    print(Fore.GREEN + f"Joined a new server!")
+    print(Fore.WHITE + "Name: " + Fore.GREEN + f"{guild.name}")
+    print(Fore.WHITE + "On: " + Fore.GREEN + f"{now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(Fore.GREEN + f"{seperator}")
+
     with open('prefixes.json', 'r') as f:
         prefixes = json.load(f)
 
@@ -312,6 +368,12 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_guild_remove(guild):
+    print(Fore.YELLOW + f"{seperator}")
+    print(Fore.YELLOW + f"Got removed from a server!")
+    print(Fore.WHITE + "Name: " + Fore.YELLOW + f"{guild.name}")
+    print(Fore.WHITE + "On: " + Fore.YELLOW + f"{now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(Fore.YELLOW + f"{seperator}")
+
     with open('prefixes.json', 'r') as f:
         prefixes = json.load(f)
 
@@ -387,8 +449,9 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
     if isinstance(error, commands.CommandError):
         print(Fore.RED + f"{seperator}")
-        print(Fore.RED + f"Error raised by: {ctx.author.name}, error: {error}")
-        print(Fore.RED + f"On {now}")
+        print(Fore.WHITE + f"Error raised by: " + Fore.RED + f"{ctx.author.name} ({ctx.author.mention})")
+        print(Fore.WHITE + f"Error message: " + Fore.RED + f"{error}")
+        print(Fore.WHITE + f"On: " + Fore.RED + f"{now.strftime('%Y-%m-%d %H:%M:%S')}")
         print(Fore.RED + f"{seperator}")
 
 
@@ -1150,7 +1213,7 @@ async def riddle(ctx):
 
 
 @bot.command()
-async def trivia(ctx, *, category = None):
+async def trivia(ctx, *, category=None):
     if category is None:
         embed = nextcord.Embed(title=f":grey_question: Please choose a category",
                                description=f"Type .trivia [category] to start!",

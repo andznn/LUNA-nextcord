@@ -21,12 +21,12 @@ import asyncio
 
 helpGuide = json.load(open("help.json"))
 token = token
-version = "v1.0/2023"
+version = "v1.1/2023"
 pythonv = sys.version[:6]
 nextcordv = nextcord.__version__
 creator = "andzn"
 now = datetime.datetime.now()
-seperator = "+------------------------------------------------------------+"
+seperator = "────────────────────────────────────────────"
 colorama.init()
 anilist = Anilist()
 us = 0
