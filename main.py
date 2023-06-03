@@ -2,8 +2,8 @@
 """
 This is a main file of LUNA✱ Discord Bot Created by Andrew
 Current version: v1.0/2023
-Newest added functionality: Added movie search commands
-Updated: 02.06.2023
+Newest added functionality: Added more moderational commands
+Updated: 03.06.2023
 """
 # ----------------------------------------------------- Libraries ------------------------------------------------------
 import nextcord
@@ -206,7 +206,7 @@ async def reload(ctx, *, cog=None):
         embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
         await ctx.send(embed=embed)
         print(Fore.YELLOW + f"{seperator}")
-        print(Fore.YELLOW + "Someone tried to use .unload... i wont let them.")
+        print(Fore.YELLOW + "Someone tried to use .reload... i wont let them.")
         print(Fore.YELLOW + f"{seperator}")
 
 
@@ -561,7 +561,6 @@ async def help(ctx):
     embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
     embed.set_thumbnail(url="https://i.ibb.co/yBXMVKG/icon.png")
     await ctx.send(embed=embed, view=view)
-
 
 #  --------------------------------------------- Utility & Other Commands ----------------------------------------------
 @bot.command(aliases=['logoff', 'terminate'], hidden=True)
