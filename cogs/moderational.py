@@ -17,6 +17,45 @@ class moderational(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command()
+    @commands.has_permissions(manage_channels=True)
+    async def channel(self, ctx, option=None, type=None, *, name=None):
+        if option is None and name is None:
+            embed = nextcord.Embed(title=f":x: No option chosen!",
+                                   description=f"Use one of the options below:",
+                                   color=lunaorange, timestamp=ctx.message.created_at)
+            embed.add_field(name="Create", value=f"`.channel create [type=voice or text][name]`")
+            embed.add_field(name="More coming soon...", value=f"", inline=False)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            await ctx.send(embed=embed)
+        elif option == "create":
+            if type == "text":
+                await ctx.guild.create_text_channel(name=f'{name}')
+                embed = nextcord.Embed(title=f":white_check_mark: Channel created",
+                                       description=f"Success!",
+                                       color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+            if type == "voice":
+                await ctx.guild.create_voice_channel(name=f'{name}')
+                embed = nextcord.Embed(title=f":white_check_mark: Channel created",
+                                       description=f"Success!",
+                                       color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+            else:
+                embed = nextcord.Embed(title=f":x: Wrong channel type",
+                                       description=f"Use .channel create voice/text [name]!",
+                                       color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+        else:
+            embed = nextcord.Embed(title=f":x: No valid option provided",
+                                   description=f"Use .channel to see available options",
+                                   color=lunaorange, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            await ctx.send(embed=embed)
+            
     @commands.command(aliases=["purge"], description="Purges provided amount of messages")
     @commands.has_permissions(manage_channels=True)
     async def clear(self, ctx, amount: int):
