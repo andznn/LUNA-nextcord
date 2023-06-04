@@ -368,6 +368,36 @@ class fun(commands.Cog):
 
             await ctx.send(embed=embed)
 
+    @commands.command(description='Sends a random spicy picture from r/JustHentaiForYou')
+    @commands.is_nsfw()
+    async def cosplay(self, ctx):
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('cosplay_babes')
+                top_posts = subreddit.hot(limit=100)
+
+                cosplay = [post for post in top_posts if
+                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not cosplay:
+                    await ctx.send('No feet found :(')
+                    return
+
+                random_cosp = random.choice(cosplay)
+                embed = nextcord.Embed(title=random_cosp.title, description="Via https://www.reddit.com/r/cosplay_babes/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_cosp.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any hentai",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
+
     @commands.command(description='Sends a random spicy picture from r/Ecchi_Waifus')
     @commands.is_nsfw()
     async def ecchi(self, ctx):
