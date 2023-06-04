@@ -1,5 +1,5 @@
 """
-This is a cog file of LUNA✱ Containing fun commands
+This is a cog file of LUNA✱ Containing voice commands
 """
 import nextcord
 from nextcord.ext import commands, tasks
