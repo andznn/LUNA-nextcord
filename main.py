@@ -383,6 +383,7 @@ class Dropdown(nextcord.ui.Select):
             nextcord.SelectOption(label="Movie Commands", description=" "),
             nextcord.SelectOption(label="Car Commands", description=" "),
             nextcord.SelectOption(label="Voice Commands", description=" "),
+            nextcord.SelectOption(label="Book Commands", description=" "),
             nextcord.SelectOption(label="Other Commands", description=" ")
         ]
         super().__init__(placeholder='Select help subject', min_values=1, max_values=1, options=options)
@@ -518,8 +519,18 @@ class Dropdown(nextcord.ui.Select):
                                  icon_url="https://i.ibb.co/yBXMVKG/icon.png")
             return await interaction.response.send_message(embed=embed)
 
-        if self.values[0] == 'Other Commands':
+        if self.values[0] == 'Book Commands':
             pageNum = 13
+            pageTitle = list(helpGuide)[pageNum]
+            embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
+            for key, val in helpGuide[pageTitle].items():
+                embed.add_field(name="." + key, value=val, inline=True)
+                embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn",
+                                 icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            return await interaction.response.send_message(embed=embed)
+
+        if self.values[0] == 'Other Commands':
+            pageNum = 14
             pageTitle = list(helpGuide)[pageNum]
             embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
             for key, val in helpGuide[pageTitle].items():

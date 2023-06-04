@@ -32,11 +32,26 @@ class books(commands.Cog):
                     author = book_resp["authors"][0]["author"]["key"]
                     description = book_resp["description"]
                     cover = book_resp["covers"][0]
-                    subject_places = book_resp["subject_places"]
-                    subjects = book_resp["subjects"]
-                    subject_people = book_resp["subject_people"]
-                    subject_times = book_resp["subject_times"]
-                    created = book_resp["created"]["value"]
+                    try:
+                        subject_places = book_resp["subject_places"]
+                    except:
+                        subject_places = "-"
+                    try:
+                        subjects = book_resp["subjects"]
+                    except:
+                        subjects = "-"
+                    try:
+                        subject_people = book_resp["subject_people"]
+                    except:
+                        subject_people = "-"
+                    try:
+                        subject_times = book_resp["subject_times"]
+                    except:
+                        subject_times = "-"
+                    try:
+                        created = book_resp["created"]["value"]
+                    except:
+                        created = "N/A"
                     author_api = f"https://openlibrary.org/{author}.json"
                     author_resp = requests.get(author_api).json()
                     author_name = author_resp["name"]
@@ -142,6 +157,7 @@ class books(commands.Cog):
                         index += 1
                         if index == limit:
                             break
+                    embed.add_field(name="More Information:", value=f"https://openlibrary.org/authors/{key}", inline=False)
                     embed.set_image(url=image_api)
                     embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
                     await ctx.send(embed=embed)

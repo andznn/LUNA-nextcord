@@ -115,6 +115,10 @@
     "join": "```Joins users voice chat```",
     "leave": "```Leaves the voice chat```"
   },
+  "Book Commands": {
+    "book search [title]": "```Displays information about provided book title (usage: .book search lord of the rings)```",
+    "book author [name]": "```Displays information about provided author (usage: .book author j k rowling)```"
+  },
   "Other Commands": {
     "iplookup [ip]": "```Displays info about provided IP address```",
     "urllookup [url]": "```Displays info about provided URL address```",
