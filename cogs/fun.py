@@ -294,7 +294,7 @@ class fun(commands.Cog):
                     return
 
                 random_porn = random.choice(porn)
-                embed = nextcord.Embed(title=random_porn.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_porn.title, description="Via https://www.reddit.com/r/passionx/", color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_porn.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -324,8 +324,38 @@ class fun(commands.Cog):
                     return
 
                 random_hentai = random.choice(hentai)
-                embed = nextcord.Embed(title=random_hentai.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_hentai.title, description="Via https://www.reddit.com/r/JustHentaiForYou/", color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_hentai.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any hentai",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
+
+    @commands.command(description='Sends a random spicy picture from r/JustHentaiForYou')
+    @commands.is_nsfw()
+    async def feet(self, ctx):
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('VerifiedFeet')
+                top_posts = subreddit.hot(limit=100)
+
+                feet = [post for post in top_posts if
+                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not feet:
+                    await ctx.send('No feet found :(')
+                    return
+
+                random_feet = random.choice(feet)
+                embed = nextcord.Embed(title=random_feet.title, description="Via https://www.reddit.com/r/VerifiedFeet/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_feet.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
                 await ctx.send(embed=embed)
@@ -354,7 +384,7 @@ class fun(commands.Cog):
                     return
 
                 random_ecchi = random.choice(ecchi)
-                embed = nextcord.Embed(title=random_ecchi.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_ecchi.title, description="Via https://www.reddit.com/r/Ecchi_Waifus/", color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_ecchi.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
