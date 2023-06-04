@@ -88,7 +88,7 @@ extensions = [
 
 if __name__ == "__main__":
     print(Fore.MAGENTA + f"{seperator}")
-    print(Fore.WHITE + f"Loading " + Fore.MAGENTA + "LUNA✱" + Fore.WHITE + " Bot...")
+    print(Fore.WHITE + f"Starting " + Fore.MAGENTA + "LUNA✱" + Fore.WHITE + " Bot...")
     print(Fore.MAGENTA + f"{seperator}")
     time.sleep(0.25)
     print(Fore.YELLOW + f"{seperator}")
