@@ -110,6 +110,11 @@
     "carporn": "```Sends an oddly satisfying car picture```",
     "jdm": "```Sends a random JDM car photo```"
   },
+  "Voice Commands": {
+    "tts [language][prompt]": "```Joins users voice chat and says users prompt (usage: .tts en test prompt)```",
+    "join": "```Joins users voice chat```",
+    "leave": "```Leaves the voice chat```"
+  },
   "Other Commands": {
     "iplookup [ip]": "```Displays info about provided IP address```",
     "urllookup [url]": "```Displays info about provided URL address```",

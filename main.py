@@ -8,6 +8,7 @@ Updated: 03.06.2023
 # ----------------------------------------------------- Libraries ------------------------------------------------------
 import nextcord
 from nextcord.ext import *
+from nextcord import *
 import json
 import random
 import datetime
@@ -26,6 +27,9 @@ import dateutils
 import os
 import wikipedia
 import time
+import gtts
+from gtts import gTTS
+
 
 # ----------------------------------------------- Custom prefixes setup ------------------------------------------------
 def get_prefix(client, message):
@@ -76,7 +80,8 @@ extensions = [
     "cogs.animals",
     "cogs.air",
     "cogs.movies",
-    "cogs.cars"
+    "cogs.cars",
+    "cogs.voice"
 ]
 
 if __name__ == "__main__":
@@ -447,6 +452,7 @@ class Dropdown(nextcord.ui.Select):
             nextcord.SelectOption(label="Air Commands", description=" "),
             nextcord.SelectOption(label="Movie Commands", description=" "),
             nextcord.SelectOption(label="Car Commands", description=" "),
+            nextcord.SelectOption(label="Voice Commands", description=" "),
             nextcord.SelectOption(label="Other Commands", description=" ")
         ]
         super().__init__(placeholder='Select help subject', min_values=1, max_values=1, options=options)
@@ -572,8 +578,18 @@ class Dropdown(nextcord.ui.Select):
                                  icon_url="https://i.ibb.co/yBXMVKG/icon.png")
             return await interaction.response.send_message(embed=embed)
 
-        if self.values[0] == 'Other Commands':
+        if self.values[0] == 'Voice Commands':
             pageNum = 12
+            pageTitle = list(helpGuide)[pageNum]
+            embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
+            for key, val in helpGuide[pageTitle].items():
+                embed.add_field(name="." + key, value=val, inline=True)
+                embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn",
+                                 icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            return await interaction.response.send_message(embed=embed)
+
+        if self.values[0] == 'Other Commands':
+            pageNum = 13
             pageTitle = list(helpGuide)[pageNum]
             embed = nextcord.Embed(title=f"{pageTitle}", color=lunaorange)
             for key, val in helpGuide[pageTitle].items():
@@ -605,7 +621,7 @@ async def help(ctx):
 #  --------------------------------------------- Utility & Other Commands ----------------------------------------------
 @bot.command(aliases=['logoff', 'terminate'], hidden=True)
 @commands.is_owner()
-async def shutdown(ctx):
+async def shutdown(ctx, interaction: Interaction):
     memberid = ctx.author.id
     if memberid == 782956226500755466:
         embed = nextcord.Embed(title=f':red_circle: My code has been terminated. Shutting down...',

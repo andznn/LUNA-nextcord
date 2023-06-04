@@ -13,6 +13,8 @@ import asyncio
 import requests
 import pyaztro
 import dateutils
+import gtts
+from gtts import gTTS
 
 
 class fun(commands.Cog):
@@ -658,7 +660,6 @@ class fun(commands.Cog):
             embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
             await ctx.send(embed=embed)
-
 
 def setup(bot: commands.Bot):
     bot.add_cog(fun(bot))
