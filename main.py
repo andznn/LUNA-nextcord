@@ -1154,7 +1154,7 @@ async def trivia(ctx, *, category=None):
                                timestamp=ctx.message.created_at)
         embed.add_field(name="Categories:", value=f"`artliterature` `language`", inline=False)
         embed.add_field(name="", value=f"`sciencenature` `general`", inline=False)
-        embed.add_field(name="", value=f"`fooddrink` `peopleplaces`", inline=False)
+        embed.add_field(name="", value=f"`food-drink` `peopleplaces`", inline=False)
         embed.add_field(name="", value=f"`geography` `historyholidays`", inline=False)
         embed.add_field(name="", value=f"`entertainment` `toysgames`", inline=False)
         embed.add_field(name="", value=f"`music` `mathematics`", inline=False)
