@@ -121,6 +121,15 @@
     "book search [title]": "```Displays information about provided book title (usage: .book search lord of the rings)```",
     "book author [name]": "```Displays information about provided author (usage: .book author j k rowling)```"
   },
+  "Game Commands": {
+    "tracker csgo steam [nick]": "```Displays CS:GO stats of a given player (usage: .tracker csgo steam test)```",
+    "tracker apex [platform][nick]": "```Displays Apex Legends stats of a given player (platforms: origin, xbl, psn)```",
+    "tracker division2 [platform][nick]": "```Displays The Division 2 stats of a given player (platforms: uplay, xbl, psn)```",
+    "league [platform][nick]": "```Displays League stats of a given player (platforms: BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1, RU)```",
+    "league [platform][nick]": "```Displays League stats of a given player (platforms: BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1, RU)```",
+    "champion [name]": "```Displays information about provided League of Legends champion```",
+    "skin [champion][number]": "```Displays selected skin of a provided League of Legends champion```"
+  },
   "Other Commands": {
     "iplookup [ip]": "```Displays info about provided IP address```",
     "urllookup [url]": "```Displays info about provided URL address```",

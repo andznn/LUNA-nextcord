@@ -1,5 +1,5 @@
 """
-This is a cog file of LUNA✱ Containing TRN commands
+This is a cog file of LUNA✱ Containing Game commands
 """
 import nextcord
 from nextcord.ext import commands, tasks
@@ -13,7 +13,7 @@ import asyncio
 import requests
 
 
-class trn(commands.Cog):
+class game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -441,6 +441,181 @@ class trn(commands.Cog):
                     url="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/oprewpx3u3d8pwlu1mgb")
                 await ctx.send(embed=embed)
 
+    @commands.command()
+    async def league(self, ctx, platform, *, query):
+        if platform == "BR1" or platform == "EUN1" or platform == "EUW1" or platform == "JP1" or platform == "KR" or platform == "LA1" or platform == "LA2" or platform == "NA1" or platform == "OC1" or platform == "RU":
+            async with ctx.typing():
+                api = f"https://{platform}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{query}"
+                headers = {
+                    "User-Agent": f"{RIOT_AGENT}",
+                    "Accept-Language": f"{RIOT_LANGUAGE}",
+                    "Accept-Charset": f"{RIOT_CHARSET}",
+                    "Origin": f"{RIOT_ORIGIN}",
+                    "X-Riot-Token": f"{RIOT_KEY}"
+                }
+                response = requests.get(api, headers=headers).json()
+                id = response["id"]
+                accId = response["accountId"]
+                puuId = response["puuid"]
+                name = response["name"]
+                profileiconid = response["profileIconId"]
+                level = response["summonerLevel"]
+                print(response)
+
+                mastery = f"https://{platform}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{id}"
+                headers = {
+                    "User-Agent": f"{RIOT_AGENT}",
+                    "Accept-Language": f"{RIOT_LANGUAGE}",
+                    "Accept-Charset": f"{RIOT_CHARSET}",
+                    "Origin": f"{RIOT_ORIGIN}",
+                    "X-Riot-Token": f"{RIOT_KEY}"
+                }
+                masteries = requests.get(mastery, headers=headers).json()
+
+                embed = nextcord.Embed(title=f":video_game: Here's {query}'s League of Legends stats",
+                                       description=f"",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Nickname:", value=f"{name}", inline=True)
+                embed.add_field(name="Level:", value=f"{level}", inline=True)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed.set_image(
+                    url=f"http://ddragon.leagueoflegends.com/cdn/13.11.1/img/profileicon/{profileiconid}.png")
+                await ctx.send(embed=embed)
+
+        else:
+            embed = nextcord.Embed(
+                title=f":x: Wrong platform, use `BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1 or RU`",
+                description=f'Please try again!',
+                color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            embed.set_thumbnail(
+                url="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/oprewpx3u3d8pwlu1mgb")
+            await ctx.send(embed=embed)
+
+    @commands.command()
+    async def champion(self, ctx, *, query):
+        try:
+            async with ctx.typing():
+                api = f"http://ddragon.leagueoflegends.com/cdn/13.11.1/data/en_US/champion/{query}.json"
+                headers = {
+                    "User-Agent": f"{RIOT_AGENT}",
+                    "Accept-Language": f"{RIOT_LANGUAGE}",
+                    "Accept-Charset": f"{RIOT_CHARSET}",
+                    "Origin": f"{RIOT_ORIGIN}",
+                    "X-Riot-Token": f"{RIOT_KEY}"
+                }
+                response = requests.get(api, headers=headers).json()
+                data = response["data"]
+                print(data)
+                champion = data[f"{query}"]
+                name = champion["name"]
+                title = champion["title"]
+                image = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{query}_0.jpg"
+                lore = champion["lore"]
+                hp = champion["stats"]["hp"]
+                movespeed = champion["stats"]["movespeed"]
+                armor = champion["stats"]["armor"]
+                mr = champion["stats"]["spellblock"]
+                range = champion["stats"]["attackrange"]
+                ad = champion["stats"]["attackdamage"]
+                attackspeed = champion["stats"]["attackspeed"]
+                passiveName = champion["passive"]["name"]
+                passiveDescription = champion["passive"]["description"]
+                Q = champion["spells"][0]
+                qName = Q["name"]
+                qDescription = Q["description"]
+                W = champion["spells"][1]
+                wName = W["name"]
+                wDescription = W["description"]
+                E = champion["spells"][2]
+                eName = E["name"]
+                eDescription = E["description"]
+                R = champion["spells"][3]
+                rName = R["name"]
+                rDescription = R["description"]
+                embed = nextcord.Embed(title=f"{name}",
+                                       description=f"{title}",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Tags:", value=f"", inline=True)
+                for k in champion["tags"]:
+                    embed.add_field(name="", value=f"`{k}`", inline=True)
+                embed.add_field(name="HP:", value=f"{hp}", inline=True)
+                embed.add_field(name="MS:", value=f"{movespeed}", inline=True)
+                embed.add_field(name="Armor:", value=f"{armor}", inline=True)
+                embed.add_field(name="MR:", value=f"{mr}", inline=True)
+                embed.add_field(name="Range:", value=f"{range}", inline=True)
+                embed.add_field(name="AD:", value=f"{ad}", inline=True)
+                embed.add_field(name="Attack Speed:", value=f"{attackspeed}", inline=True)
+                embed.add_field(name="Skills:", value=f"", inline=False)
+                embed.add_field(name=f"Passive: `{passiveName}`", value=f"{passiveDescription}", inline=False)
+                embed.add_field(name=f"Q: `{qName}`", value=f"{qDescription}", inline=False)
+                embed.add_field(name=f"W: `{wName}`", value=f"{wDescription}", inline=False)
+                embed.add_field(name=f"E: `{eName}`", value=f"{eDescription}", inline=False)
+                embed.add_field(name=f"R: `{rName}`", value=f"{rDescription}", inline=False)
+                embed.add_field(name="Lore:", value=f"{lore[:1000]}...", inline=False)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed.set_image(url=image)
+                embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/13.11.1/img/champion/{query}.png")
+                await ctx.send(embed=embed)
+        except:
+            embed = nextcord.Embed(title=f":x: Didn't find anything about {query}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            await ctx.send(embed=embed)
+
+    @commands.command()
+    async def skin(self, ctx, champion, *, skin: int):
+        try:
+            async with ctx.typing():
+                api = f"http://ddragon.leagueoflegends.com/cdn/13.11.1/data/en_US/champion/{champion}.json"
+                headers = {
+                    "User-Agent": f"{RIOT_AGENT}",
+                    "Accept-Language": f"{RIOT_LANGUAGE}",
+                    "Accept-Charset": f"{RIOT_CHARSET}",
+                    "Origin": f"{RIOT_ORIGIN}",
+                    "X-Riot-Token": f"{RIOT_KEY}"
+                }
+                response = requests.get(api, headers=headers).json()
+                data = response["data"][f"{champion}"]
+                lore = data["lore"]
+                count = (len(data["skins"]))
+                try:
+                    skins = data["skins"][skin - 1]
+                except:
+                    skins = None
+                try:
+                    name = data["skins"][skin - 1]["name"]
+                except:
+                    skins = None
+                try:
+                    chromas = data["skins"][skin - 1]["chromas"]
+                except:
+                    chromas = None
+                try:
+                    num = data["skins"][skin - 1]["num"]
+                except:
+                    num = 0
+                image = f"https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{champion}_{num}.jpg"
+
+                embed = nextcord.Embed(title=f"{name}",
+                                       description=f"Skin {num + 1}/{count}",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Chromas:", value=f"{chromas}", inline=True)
+                embed.add_field(name=f"{champion} Lore:", value=f"{lore[:1000]}...", inline=False)
+                embed.set_image(url=image)
+                embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/13.11.1/img/champion/{champion}.png")
+                await ctx.send(embed=embed)
+        except:
+            embed = nextcord.Embed(title=f":x: Didn't find that skin",
+                                   description=f'{champion} has only {count} skins!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            await ctx.send(embed=embed)
+
 
 def setup(bot: commands.Bot):
-    bot.add_cog(trn(bot))
+    bot.add_cog(game(bot))
