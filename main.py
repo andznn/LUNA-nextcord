@@ -2,7 +2,7 @@
 """
 This is a main file of LUNA✱ Discord Bot Created by Andrew
 Current version: v1.1/2023
-Newest added functionality: Fixed bugs and made some adjustments
+Newest added functionality: Added voice commands
 Updated: 03.06.2023
 """
 # ----------------------------------------------------- Libraries ------------------------------------------------------
