@@ -23,28 +23,37 @@ class voice(commands.Cog):
 
     @commands.command()
     async def tts(self, ctx, lang, *args):
-        text = " ".join(args)
-        user = ctx.message.author
-        if user.voice is not None:
-            try:
-                vc = await user.voice.channel.connect()
-            except:
-                vc = ctx.voice_client
+        try:
+            text = " ".join(args)
+            user = ctx.message.author
+            if user.voice is not None:
+                try:
+                    vc = await user.voice.channel.connect()
+                except:
+                    vc = ctx.voice_client
 
-            sound = gTTS(text=text, lang=lang, slow=False)
-            sound.save("tts-audio.mp3")
+                sound = gTTS(text=text, lang=lang, slow=False)
+                sound.save("tts-audio.mp3")
 
-            if vc.is_playing():
-                vc.stop()
+                if vc.is_playing():
+                    vc.stop()
 
-            source = await nextcord.FFmpegOpusAudio.from_probe("tts-audio.mp3", method="fallback")
-            vc.play(source)
-        else:
-            embed = nextcord.Embed(title=f":red_circle: You need to be in a voice channel to use that!",
-                                   description=f"",
-                                   color=lunaorange,
-                                   timestamp=ctx.message.created_at)
+                source = await nextcord.FFmpegOpusAudio.from_probe("tts-audio.mp3", method="fallback")
+                vc.play(source)
+            else:
+                embed = nextcord.Embed(title=f":red_circle: You need to be in a voice channel to use that!",
+                                       description=f"",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+
+        except:
+            embed = nextcord.Embed(title=f":x: There was an error processing that request",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
             embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
             await ctx.send(embed=embed)
 
     @commands.command()

@@ -42,8 +42,7 @@ class fun(commands.Cog):
                                  icon_url="https://i.ibb.co/yBXMVKG/icon.png")
                 await ctx.send(embed=embed)
 
-    @commands.command(aliases=["memes", "memer"],
-                      description='Sends a random meme from r/memes or r/anime (use .meme anime)')
+    @commands.command(aliases=["memes", "memer"])
     async def meme(self, ctx, *, category=None):
         if category is None:
             subreddit = reddit.subreddit('memes')
@@ -282,103 +281,144 @@ class fun(commands.Cog):
     @commands.command(description='Sends a random spicy picture from r/passionx')
     @commands.is_nsfw()
     async def porn(self, ctx):
-        subreddit = reddit.subreddit('passionx')
-        top_posts = subreddit.hot(limit=100)
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('passionx')
+                top_posts = subreddit.hot(limit=100)
 
-        porn = [post for post in top_posts if
-                not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                porn = [post for post in top_posts if
+                        not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-        if not porn:
-            await ctx.send('No porn found :(')
-            return
+                if not porn:
+                    await ctx.send('No porn found :(')
+                    return
 
-        random_porn = random.choice(porn)
-        embed = nextcord.Embed(title=random_porn.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_porn.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_porn = random.choice(porn)
+                embed = nextcord.Embed(title=random_porn.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_porn.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any porn",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command(description='Sends a random spicy picture from r/JustHentaiForYou')
     @commands.is_nsfw()
     async def hentai(self, ctx):
-        subreddit = reddit.subreddit('JustHentaiForYou')
-        top_posts = subreddit.hot(limit=100)
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('JustHentaiForYou')
+                top_posts = subreddit.hot(limit=100)
 
-        hentai = [post for post in top_posts if
-                  not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                hentai = [post for post in top_posts if
+                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-        if not hentai:
-            await ctx.send('No hentai found :(')
-            return
+                if not hentai:
+                    await ctx.send('No hentai found :(')
+                    return
 
-        random_hentai = random.choice(hentai)
-        embed = nextcord.Embed(title=random_hentai.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_hentai.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_hentai = random.choice(hentai)
+                embed = nextcord.Embed(title=random_hentai.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_hentai.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any hentai",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command(description='Sends a random spicy picture from r/Ecchi_Waifus')
     @commands.is_nsfw()
     async def ecchi(self, ctx):
-        subreddit = reddit.subreddit('Ecchi_Waifus')
-        top_posts = subreddit.hot(limit=100)
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('Ecchi_Waifus')
+                top_posts = subreddit.hot(limit=100)
 
-        ecchi = [post for post in top_posts if
-                 not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                ecchi = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-        if not ecchi:
-            await ctx.send('No ecchi found :(')
-            return
+                if not ecchi:
+                    await ctx.send('No ecchi found :(')
+                    return
 
-        random_ecchi = random.choice(ecchi)
-        embed = nextcord.Embed(title=random_ecchi.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_ecchi.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_ecchi = random.choice(ecchi)
+                embed = nextcord.Embed(title=random_ecchi.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_ecchi.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any ecchi",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command(description='Sends a random spicy picture from r/Cursed')
     async def cursed(self, ctx):
-        subreddit = reddit.subreddit('Cursed')
-        top_posts = subreddit.hot(limit=100)
+        try:
+            async with ctx.typing():
+                subreddit = reddit.subreddit('Cursed')
+                top_posts = subreddit.hot(limit=100)
 
-        Cursed = [post for post in top_posts if
-                  not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                Cursed = [post for post in top_posts if
+                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-        if not Cursed:
-            await ctx.send('No ecchi found :(')
-            return
+                if not Cursed:
+                    await ctx.send('No ecchi found :(')
+                    return
 
-        random_Cursed = random.choice(Cursed)
-        embed = nextcord.Embed(title=random_Cursed.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_Cursed.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_Cursed = random.choice(Cursed)
+                embed = nextcord.Embed(title=random_Cursed.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_Cursed.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any cursed images",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def logo(self, ctx, *, company):
         try:
-            company = company
-            api_url = 'https://api.api-ninjas.com/v1/logo?name={}'.format(company)
-            response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-            info = response[0]
-            name = info["name"]
-            ticker = info["ticker"]
-            image = info["image"]
+            async with ctx.typing():
+                company = company
+                api_url = 'https://api.api-ninjas.com/v1/logo?name={}'.format(company)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                name = info["name"]
+                ticker = info["ticker"]
+                image = info["image"]
 
-            embed = nextcord.Embed(title=f"Logo look up for {company}",
-                                   description=f"Here's what I found about ``{company}``",
-                                   color=lunaorange,
-                                   timestamp=ctx.message.created_at)
-            embed.add_field(name="Name:", value=f"{name}")
-            embed.add_field(name="Ticker:", value=f"{ticker}")
-            embed.set_image(url=image)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f"Logo look up for {company}",
+                                       description=f"Here's what I found about ``{company}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Name:", value=f"{name}")
+                embed.add_field(name="Ticker:", value=f"{ticker}")
+                embed.set_image(url=image)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
         except IndexError:
             embed = nextcord.Embed(title=f":x: Didn't find anything related to {company}",
@@ -390,174 +430,255 @@ class fun(commands.Cog):
 
     @commands.command()
     async def emoji(self, ctx, *, name):
-        name = name
-        api_url = 'https://api.api-ninjas.com/v1/emoji?name={}'.format(name)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        info = response[0]
-        code = info["code"]
-        character = info["character"]
-        image = info["image"]
-        name = info["name"]
-        group = info["group"]
-        subgroup = info["subgroup"]
+        try:
+            async with ctx.typing():
+                name = name
+                api_url = 'https://api.api-ninjas.com/v1/emoji?name={}'.format(name)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                code = info["code"]
+                character = info["character"]
+                image = info["image"]
+                name = info["name"]
+                group = info["group"]
+                subgroup = info["subgroup"]
 
-        embed = nextcord.Embed(title=f":smile: Emoji Look Up for {name}",
-                               description=f"Here's what I found about ``{name}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.add_field(name="Code:", value=f"{code}")
-        embed.add_field(name="Character:", value=f"{character}")
-        embed.add_field(name="Name:", value=f"{name}")
-        embed.add_field(name="Group:", value=f"{group}")
-        embed.add_field(name="Subgroup:", value=f"{subgroup}")
-        embed.set_image(url=image)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f":smile: Emoji Look Up for {name}",
+                                       description=f"Here's what I found about ``{name}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Code:", value=f"{code}")
+                embed.add_field(name="Character:", value=f"{character}")
+                embed.add_field(name="Name:", value=f"{name}")
+                embed.add_field(name="Group:", value=f"{group}")
+                embed.add_field(name="Subgroup:", value=f"{subgroup}")
+                embed.set_image(url=image)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find anything related to {name}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def quote(self, ctx, *, query):
-        query = query
-        api_url = 'https://api.api-ninjas.com/v1/quotes?category={}'.format(query)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        info = response[0]
-        quote = info["quote"]
-        author = info["author"]
-        category = info["category"]
+        try:
+            async with ctx.typing():
+                query = query
+                api_url = 'https://api.api-ninjas.com/v1/quotes?category={}'.format(query)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                quote = info["quote"]
+                author = info["author"]
+                category = info["category"]
 
-        embed = nextcord.Embed(title=f":speech_left: Random quote about {query}",
-                               description=f"Here's a random quote about ``{query}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.add_field(name="Quote:", value=f"{quote}")
-        embed.add_field(name="Author:", value=f"{author}")
-        embed.add_field(name="Category:", value=f"{category}")
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f":speech_left: Random quote about {query}",
+                                       description=f"Here's a random quote about ``{query}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Quote:", value=f"{quote}")
+                embed.add_field(name="Author:", value=f"{author}")
+                embed.add_field(name="Category:", value=f"{category}")
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find anything related to {query}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=["celeb"])
     async def celebrity(self, ctx, *, name):
-        name = name
-        api_url = 'https://api.api-ninjas.com/v1/celebrity?name={}'.format(name)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        info = response[0]
-        name = info["name"]
-        net = info["net_worth"]
-        gender = info["gender"]
-        nationality = info["nationality"]
-        occupation = info["occupation"][0]
-        height = info["height"]
-        birthday = info["birthday"]
+        try:
+            async with ctx.typing():
+                name = name
+                api_url = 'https://api.api-ninjas.com/v1/celebrity?name={}'.format(name)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                name = info["name"]
+                net = info["net_worth"]
+                gender = info["gender"]
+                nationality = info["nationality"]
+                occupation = info["occupation"][0]
+                height = info["height"]
+                birthday = info["birthday"]
 
-        embed = nextcord.Embed(title=f":busts_in_silhouette: Information about {name}",
-                               description=f"Here's information about ``{name}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.add_field(name="Name:", value=f"{name}")
-        embed.add_field(name="Net worth:", value=f"{net}")
-        embed.add_field(name="Gender:", value=f"{gender}")
-        embed.add_field(name="Nationality:", value=f"{nationality}")
-        embed.add_field(name="Occupation:", value=f"{occupation}")
-        embed.add_field(name="Height:", value=f"{height}")
-        embed.add_field(name="Birthday:", value=f"{birthday}")
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f":busts_in_silhouette: Information about {name}",
+                                       description=f"Here's information about ``{name}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="Name:", value=f"{name}")
+                embed.add_field(name="Net worth:", value=f"{net}")
+                embed.add_field(name="Gender:", value=f"{gender}")
+                embed.add_field(name="Nationality:", value=f"{nationality}")
+                embed.add_field(name="Occupation:", value=f"{occupation}")
+                embed.add_field(name="Height:", value=f"{height}")
+                embed.add_field(name="Birthday:", value=f"{birthday}")
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find anything related to {name}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def dadjoke(self, ctx):
-        api_url = 'https://api.api-ninjas.com/v1/dadjokes?limit={}'.format(1)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        info = response[0]
-        joke = info["joke"]
+        try:
+            async with ctx.typing():
+                api_url = 'https://api.api-ninjas.com/v1/dadjokes?limit={}'.format(1)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                joke = info["joke"]
 
-        embed = nextcord.Embed(title=f":rofl: Here's a dad joke",
-                               description=f"``{joke}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f":rofl: Here's a dad joke",
+                                       description=f"``{joke}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any jokes",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def joke(self, ctx):
-        api_url = 'https://api.api-ninjas.com/v1/jokes?limit={}'.format(1)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        info = response[0]
-        joke = info["joke"]
+        try:
+            async with ctx.typing():
+                api_url = 'https://api.api-ninjas.com/v1/jokes?limit={}'.format(1)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                joke = info["joke"]
 
-        embed = nextcord.Embed(title=f":rofl: Here's a joke",
-                               description=f"``{joke}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f":rofl: Here's a joke",
+                                       description=f"``{joke}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find any jokes",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def yesorno(self, ctx):
-        api_url = 'https://yesno.wtf/api'
-        response = requests.get(api_url).json()
-        info = response
-        answer = info["answer"]
-        image = info["image"]
+        try:
+            async with ctx.typing():
+                api_url = 'https://yesno.wtf/api'
+                response = requests.get(api_url).json()
+                info = response
+                answer = info["answer"]
+                image = info["image"]
 
-        embed = nextcord.Embed(title=f"{answer}",
-                               description=f"",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_image(url=image)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f"{answer}",
+                                       description=f"",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_image(url=image)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: API Error",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def flag(self, ctx, *, country):
-        api_url = f'https://www.countryflagicons.com/FLAT/64/{country}.png'
+        try:
+            async with ctx.typing():
+                api_url = f'https://www.countryflagicons.com/FLAT/64/{country}.png'
 
-        embed = nextcord.Embed(title=f"Here's the flag of {country}",
-                               description=f"",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_image(url=f"https://www.countryflagicons.com/FLAT/64/{country}.png")
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                embed = nextcord.Embed(title=f"Here's the flag of {country}",
+                                       description=f"",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_image(url=f"https://www.countryflagicons.com/FLAT/64/{country}.png")
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: Didn't find a flag related to {country}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def foodporn(self, ctx):
-        subreddit = reddit.subreddit('FoodPorn')
-        top_posts = subreddit.hot(limit=100)
+        async with ctx.typing():
+            subreddit = reddit.subreddit('FoodPorn')
+            top_posts = subreddit.hot(limit=100)
 
-        FoodPorn = [post for post in top_posts if
-                    not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+            FoodPorn = [post for post in top_posts if
+                        not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-        if not FoodPorn:
-            await ctx.send('No food found :(')
-            return
+            if not FoodPorn:
+                await ctx.send('No food found :(')
+                return
 
-        random_food = random.choice(FoodPorn)
-        embed = nextcord.Embed(title=random_food.title, color=lunaorange, timestamp=ctx.message.created_at)
-        embed.set_image(url=random_food.url)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            random_food = random.choice(FoodPorn)
+            embed = nextcord.Embed(title=random_food.title, color=lunaorange, timestamp=ctx.message.created_at)
+            embed.set_image(url=random_food.url)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-        await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=["rhymes"])
     async def rhyme(self, ctx, *, word):
-        query = word
-        api_url = 'https://api.api-ninjas.com/v1/rhyme?word={}'.format(query)
-        response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
-        embed = nextcord.Embed(title=f":notes: here are words that rhyme with {word}:",
-                               description=f"",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-        for values in response:
-            rhymes = values
-            embed.add_field(name="", value=f"{rhymes}")
-        await ctx.send(embed=embed)
+        try:
+            async with ctx.typing():
+                query = word
+                api_url = 'https://api.api-ninjas.com/v1/rhyme?word={}'.format(query)
+                response = requests.get(api_url, headers={"X-Api-Key": NINJAS_KEY}).json()
+                embed = nextcord.Embed(title=f":notes: here are words that rhyme with {word}:",
+                                       description=f"",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                for values in response:
+                    rhymes = values
+                    embed.add_field(name="", value=f"{rhymes}")
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: No rhymes found to {word}",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=["8ball"])
     async def ask(self, ctx, *, question):
@@ -608,50 +729,71 @@ class fun(commands.Cog):
 
     @commands.command()
     async def advice(self, ctx):
-        api = "https://api.adviceslip.com/advice"
-        response = requests.get(api).json()
-        data = response
+        try:
+            async with ctx.typing():
+                api = "https://api.adviceslip.com/advice"
+                response = requests.get(api).json()
+                data = response
 
-        id = response["slip"]["id"]
-        advice = response["slip"]["advice"]
+                id = response["slip"]["id"]
+                advice = response["slip"]["advice"]
 
-        embed = nextcord.Embed(title=f":information_source: Here's a random advice:",
-                               description=f"``{advice}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.add_field(name="ID:", value=f"{id}")
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-        await ctx.send(embed=embed)
+                embed = nextcord.Embed(title=f":information_source: Here's a random advice:",
+                                       description=f"``{advice}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="ID:", value=f"{id}")
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: No advice for you",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def kanye(self, ctx):
-        api = "https://api.kanye.rest/"
-        response = requests.get(api).json()
-        data = response
+        try:
+            async with ctx.typing():
+                api = "https://api.kanye.rest/"
+                response = requests.get(api).json()
+                data = response
 
-        quote = data["quote"]
+                quote = data["quote"]
 
-        embed = nextcord.Embed(title=f":performing_arts: Here's a random Kanye quote:",
-                               description=f"``{quote}``",
-                               color=lunaorange,
-                               timestamp=ctx.message.created_at)
-        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-        await ctx.send(embed=embed)
+                embed = nextcord.Embed(title=f":performing_arts: Here's a random Kanye quote:",
+                                       description=f"``{quote}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
+
+        except IndexError:
+            embed = nextcord.Embed(title=f":x: No Kanye quotes found",
+                                   description=f'Please try again!',
+                                   color=lunablue, timestamp=ctx.message.created_at)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def fact(self, ctx):
         try:
-            api = f"https://api.api-ninjas.com/v1/facts?limit=1"
-            response = requests.get(api, headers={"X-Api-Key": NINJAS_KEY}).json()
-            info = response[0]
-            fact = info["fact"]
+            async with ctx.typing():
+                api = f"https://api.api-ninjas.com/v1/facts?limit=1"
+                response = requests.get(api, headers={"X-Api-Key": NINJAS_KEY}).json()
+                info = response[0]
+                fact = info["fact"]
 
-            embed = nextcord.Embed(title=f":grey_exclamation: Here's a random fact:",
-                                   description=f"``{fact}``",
-                                   color=lunaorange,
-                                   timestamp=ctx.message.created_at)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
-            await ctx.send(embed=embed)
+                embed = nextcord.Embed(title=f":grey_exclamation: Here's a random fact:",
+                                       description=f"``{fact}``",
+                                       color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                await ctx.send(embed=embed)
 
         except IndexError:
             embed = nextcord.Embed(title=f":x: Didn't find anything any facts",
