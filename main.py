@@ -83,7 +83,8 @@ extensions = [
     "cogs.cars",
     "cogs.voice",
     "cogs.errors",
-    "cogs.books"
+    "cogs.books",
+    "cogs.trn"
 ]
 
 if __name__ == "__main__":
