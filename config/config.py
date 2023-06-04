@@ -26,7 +26,7 @@ pythonv = sys.version[:6]
 nextcordv = nextcord.__version__
 creator = "andzn"
 now = datetime.datetime.now()
-seperator = "───────────────────────────────────────────────────"
+seperator = "──────────────────────────────────"
 colorama.init()
 anilist = Anilist()
 us = 0
