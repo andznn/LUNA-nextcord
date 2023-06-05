@@ -29,6 +29,7 @@ import wikipedia
 import time
 import gtts
 from gtts import gTTS
+import logging
 
 
 # ----------------------------------------------- Custom prefixes setup ------------------------------------------------
@@ -40,6 +41,13 @@ def get_prefix(client, message):
 
 
 # ------------------------------------------ Setup for the Discord Bot client ------------------------------------------
+logging.basicConfig(level=logging.FATAL)
+logger = logging.getLogger('nextcord')
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler(filename='logs.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
+
 intents = nextcord.Intents().all()
 intents.message_content = True
 intents.members = True
