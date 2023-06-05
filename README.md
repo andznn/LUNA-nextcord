@@ -33,7 +33,7 @@ Its utilities range from moderation to fun commands.
 <br>
 <hr>
 
-## LUNA BOT Version: `v1.0`
+## LUNA BOT Version: `v1.2`
 #### Notice: This bot is still under development and might contain certain bugs.
 #### Latest added functionality: Added errors cog and error handling in cogs + books searching commands
 ##### Do not copy the code without credit.
