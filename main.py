@@ -109,7 +109,6 @@ if __name__ == "__main__":
     for ext in extensions:
         bot.load_extension(ext)
         print(Fore.WHITE + f"Name: " + Fore.GREEN + f"{ext}" + Fore.WHITE + " Status: " + Fore.GREEN + "loaded")
-        time.sleep(0.25)
     time.sleep(0.25)
     print(Fore.GREEN + f"{seperator}")
     time.sleep(0.25)
