@@ -313,7 +313,7 @@ class fun(commands.Cog):
     async def hentai(self, ctx):
         try:
             async with ctx.typing():
-                subreddit = reddit.subreddit('JustHentaiForYou')
+                subreddit = reddit.subreddit('hentai')
                 top_posts = subreddit.hot(limit=100)
 
                 hentai = [post for post in top_posts if
@@ -324,7 +324,7 @@ class fun(commands.Cog):
                     return
 
                 random_hentai = random.choice(hentai)
-                embed = nextcord.Embed(title=random_hentai.title, description="Via https://www.reddit.com/r/JustHentaiForYou/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_hentai.title, description="Via https://www.reddit.com/r/hentai/", color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_hentai.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
