@@ -15,11 +15,21 @@ import pyaztro
 import dateutils
 import gtts
 from gtts import gTTS
+import random
 
 
 class fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.command(aliases=["number", "randomnumber", "randint"])
+    async def random(self, ctx, small: int, big: int):
+        number = random.randint(small, big)
+        embed = nextcord.Embed(title=":1234: Here's your random number: ", description=f"`{number}`", color=lunaorange,
+                               timestamp=ctx.message.created_at)
+        embed.set_footer(text=f"LUNA✱ ✦ Created by andzn",
+                         icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=["ai"], description='Prompts a message to ChatGPT')
     async def gpt(self, ctx: commands.Context, *, prompt: str):
@@ -882,7 +892,7 @@ class fun(commands.Cog):
         embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["flip"])
+    @commands.command(aliases=["flip", "coinflip"])
     async def coin(self, ctx):
         coin = random.choice(["heads", "tails"])
 
