@@ -21,7 +21,7 @@ import asyncio
 
 helpGuide = json.load(open("help.json"))
 token = token
-version = "v1.2/2023"
+version = "v1.3/2023"
 pythonv = sys.version[:6]
 nextcordv = nextcord.__version__
 creator = "andzn"
