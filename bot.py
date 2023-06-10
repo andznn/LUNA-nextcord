@@ -716,6 +716,9 @@ def luna_bot():
         embed = nextcord.Embed(title=f":globe_with_meridians: LUNA✱",
                                description=f"```Version: {version}, Created by: {creator}```", color=lunaorange,
                                timestamp=ctx.message.created_at)
+        embed.add_field(name='Nextcord Version:', value=nextcordv, inline=False)
+        embed.add_field(name='Python Version:', value=pythonv, inline=False)
+        embed.add_field(name='Read more about nextcord:', value="https://docs.nextcord.dev/en/stable/", inline=False)
         embed.set_footer(text=f"{bot.user.name} ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
         await ctx.send(embed=embed)
