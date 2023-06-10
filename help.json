@@ -126,7 +126,6 @@
     "tracker apex [platform][nick]": "```Displays Apex Legends stats of a given player (platforms: origin, xbl, psn)```",
     "tracker division2 [platform][nick]": "```Displays The Division 2 stats of a given player (platforms: uplay, xbl, psn)```",
     "league [platform][nick]": "```Displays League stats of a given player (platforms: BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1, RU)```",
-    "league [platform][nick]": "```Displays League stats of a given player (platforms: BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1, RU)```",
     "champion [name]": "```Displays information about provided League of Legends champion```",
     "skin [champion][number]": "```Displays selected skin of a provided League of Legends champion```"
   },

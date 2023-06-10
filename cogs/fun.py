@@ -44,239 +44,337 @@ class fun(commands.Cog):
 
     @commands.command(aliases=["memes", "memer"])
     async def meme(self, ctx, *, category=None):
-        if category is None:
-            subreddit = reddit.subreddit('memes')
-            top_posts = subreddit.hot(limit=100)
+        async with ctx.typing():
+            if category is None:
+                subreddit = reddit.subreddit('memes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'categories':
-            embed = nextcord.Embed(title="Available meme categories:", color=lunaorange,
-                                   timestamp=ctx.message.created_at)
-            embed.add_field(name="``anime``", value="", inline=True)
-            embed.add_field(name="``gamers``", value="", inline=True)
-            embed.add_field(name="``cars``", value="", inline=True)
-            embed.add_field(name="``gym``", value="", inline=True)
-            embed.add_field(name="``dirty``", value="", inline=True)
-            embed.add_field(name="``dank``", value="", inline=True)
-            embed.add_field(name="``league``", value="", inline=True)
-            embed.add_field(name="``rocket league``", value="", inline=True)
-            embed.add_field(name="``minecraft``", value="", inline=True)
-            embed.add_field(name="``csgo``", value="", inline=True)
-            embed.add_field(name="``animals``", value="", inline=True)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            if category == 'categories':
+                embed = nextcord.Embed(title="Available meme categories:", color=lunaorange,
+                                       timestamp=ctx.message.created_at)
+                embed.add_field(name="``.meme``", value="sends a random meme", inline=True)
+                embed.add_field(name="``anime``", value="", inline=True)
+                embed.add_field(name="``gamers``", value="", inline=True)
+                embed.add_field(name="``cars``", value="", inline=True)
+                embed.add_field(name="``gym``", value="", inline=True)
+                embed.add_field(name="``dirty``", value="", inline=True)
+                embed.add_field(name="``dank``", value="", inline=True)
+                embed.add_field(name="``league``", value="", inline=True)
+                embed.add_field(name="``rocket league``", value="", inline=True)
+                embed.add_field(name="``minecraft``", value="", inline=True)
+                embed.add_field(name="``csgo``", value="", inline=True)
+                embed.add_field(name="``animals``", value="", inline=True)
+                embed.add_field(name="``animals``", value="", inline=True)
+                embed.add_field(name="``history``", value="", inline=True)
+                embed.add_field(name="``terrible``", value="", inline=True)
+                embed.add_field(name="``brits``", value="", inline=True)
+                embed.add_field(name="``offensive``", value="", inline=True)
+                embed.add_field(name="``french``", value="", inline=True)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'anime':
-            subreddit = reddit.subreddit('animemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'anime':
+                subreddit = reddit.subreddit('animemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'gamers':
-            subreddit = reddit.subreddit('animemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'gamers':
+                subreddit = reddit.subreddit('animemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'cars':
-            subreddit = reddit.subreddit('carmemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'cars':
+                subreddit = reddit.subreddit('carmemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'gym':
-            subreddit = reddit.subreddit('gymmemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'gym':
+                subreddit = reddit.subreddit('gymmemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'dirty':
-            subreddit = reddit.subreddit('dirtymemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'dirty':
+                subreddit = reddit.subreddit('dirtymemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'dank':
-            subreddit = reddit.subreddit('dankmemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'dank':
+                subreddit = reddit.subreddit('dankmemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == 'league':
-            subreddit = reddit.subreddit('LeagueOfMemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == 'league':
+                subreddit = reddit.subreddit('LeagueOfMemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == "rocket league":
-            subreddit = reddit.subreddit('RocketLeagueMemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == "rocket league":
+                subreddit = reddit.subreddit('RocketLeagueMemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == "minecraft":
-            subreddit = reddit.subreddit('MinecraftMemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == "minecraft":
+                subreddit = reddit.subreddit('MinecraftMemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == "csgo":
-            subreddit = reddit.subreddit('CSGOmemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == "csgo":
+                subreddit = reddit.subreddit('CSGOmemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        if category == "animals":
-            subreddit = reddit.subreddit('AnimalMemes')
-            top_posts = subreddit.hot(limit=100)
+            if category == "animals":
+                subreddit = reddit.subreddit('AnimalMemes')
+                top_posts = subreddit.hot(limit=100)
 
-            memes = [post for post in top_posts if
-                     not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-            if not memes:
-                await ctx.send('No memes found :(')
-                return
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
 
-            random_meme = random.choice(memes)
-            embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
-            embed.set_image(url=random_meme.url)
-            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
+
+            if category == "history":
+                subreddit = reddit.subreddit('HistoryMemes')
+                top_posts = subreddit.hot(limit=100)
+
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
+
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+            if category == "terrible":
+                subreddit = reddit.subreddit('terriblefacebookmemes')
+                top_posts = subreddit.hot(limit=100)
+
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
+
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+            if category == "brits":
+                subreddit = reddit.subreddit('GreatBritishMemes')
+                top_posts = subreddit.hot(limit=100)
+
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
+
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+            if category == "offensive":
+                subreddit = reddit.subreddit('Offensive_Memes')
+                top_posts = subreddit.hot(limit=100)
+
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
+
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
+
+            if category == "french":
+                subreddit = reddit.subreddit('FrenchMemes')
+                top_posts = subreddit.hot(limit=100)
+
+                memes = [post for post in top_posts if
+                         not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+
+                if not memes:
+                    await ctx.send('No memes found :(')
+                    return
+
+                random_meme = random.choice(memes)
+                embed = nextcord.Embed(title=random_meme.title, color=lunaorange, timestamp=ctx.message.created_at)
+                embed.set_image(url=random_meme.url)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
 
     @commands.command(description='Sends a random spicy picture from r/passionx')
     @commands.is_nsfw()
@@ -294,7 +392,8 @@ class fun(commands.Cog):
                     return
 
                 random_porn = random.choice(porn)
-                embed = nextcord.Embed(title=random_porn.title, description="Via https://www.reddit.com/r/passionx/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_porn.title, description="Via https://www.reddit.com/r/passionx/",
+                                       color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_porn.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -324,7 +423,8 @@ class fun(commands.Cog):
                     return
 
                 random_hentai = random.choice(hentai)
-                embed = nextcord.Embed(title=random_hentai.title, description="Via https://www.reddit.com/r/hentai/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_hentai.title, description="Via https://www.reddit.com/r/hentai/",
+                                       color=lunaorange, timestamp=ctx.message.created_at)
                 embed.set_image(url=random_hentai.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -347,14 +447,16 @@ class fun(commands.Cog):
                 top_posts = subreddit.hot(limit=100)
 
                 feet = [post for post in top_posts if
-                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                        not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
                 if not feet:
                     await ctx.send('No feet found :(')
                     return
 
                 random_feet = random.choice(feet)
-                embed = nextcord.Embed(title=random_feet.title, description="Via https://www.reddit.com/r/VerifiedFeet/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_feet.title,
+                                       description="Via https://www.reddit.com/r/VerifiedFeet/", color=lunaorange,
+                                       timestamp=ctx.message.created_at)
                 embed.set_image(url=random_feet.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -377,14 +479,16 @@ class fun(commands.Cog):
                 top_posts = subreddit.hot(limit=100)
 
                 cosplay = [post for post in top_posts if
-                          not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+                           not post.stickied and post.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
                 if not cosplay:
                     await ctx.send('No feet found :(')
                     return
 
                 random_cosp = random.choice(cosplay)
-                embed = nextcord.Embed(title=random_cosp.title, description="Via https://www.reddit.com/r/cosplay_babes/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_cosp.title,
+                                       description="Via https://www.reddit.com/r/cosplay_babes/", color=lunaorange,
+                                       timestamp=ctx.message.created_at)
                 embed.set_image(url=random_cosp.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -414,7 +518,9 @@ class fun(commands.Cog):
                     return
 
                 random_ecchi = random.choice(ecchi)
-                embed = nextcord.Embed(title=random_ecchi.title, description="Via https://www.reddit.com/r/Ecchi_Waifus/", color=lunaorange, timestamp=ctx.message.created_at)
+                embed = nextcord.Embed(title=random_ecchi.title,
+                                       description="Via https://www.reddit.com/r/Ecchi_Waifus/", color=lunaorange,
+                                       timestamp=ctx.message.created_at)
                 embed.set_image(url=random_ecchi.url)
                 embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
@@ -862,6 +968,7 @@ class fun(commands.Cog):
             embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
             await ctx.send(embed=embed)
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(fun(bot))

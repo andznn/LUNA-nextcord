@@ -157,7 +157,8 @@ class books(commands.Cog):
                         index += 1
                         if index == limit:
                             break
-                    embed.add_field(name="More Information:", value=f"https://openlibrary.org/authors/{key}", inline=False)
+                    embed.add_field(name="More Information:", value=f"https://openlibrary.org/authors/{key}",
+                                    inline=False)
                     embed.set_image(url=image_api)
                     embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
                     await ctx.send(embed=embed)
@@ -169,6 +170,14 @@ class books(commands.Cog):
                     embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
 
                     await ctx.send(embed=embed)
+
+            else:
+                embed = nextcord.Embed(title=f":x: Wrong action, use .book search/author [query]",
+                                       description=f'Please try again!',
+                                       color=lunablue, timestamp=ctx.message.created_at)
+                embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+
+                await ctx.send(embed=embed)
 
 
 def setup(bot: commands.Bot):
