@@ -24,11 +24,35 @@ import wikipedia
 import gtts
 from gtts import gTTS
 import logging
+import pkg_resources
 
 
 class other(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def imports(self, ctx):
+        memberid = ctx.author.id
+        if memberid == 782956226500755466:
+            installed_packages = pkg_resources.working_set
+            installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
+                                              for i in installed_packages])
+            embed = nextcord.Embed(title=f':package: Here are all the packages I am currently using...',
+                                   description="", timestamp=ctx.message.created_at,
+                                   color=lunablue)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            for v in installed_packages_list:
+                embed.add_field(name=f"`{v}`", value="", inline=True)
+            await ctx.send(embed=embed)
+        else:
+            embed = nextcord.Embed(title=f'Only my creator can use this command.',
+                                   description=f'{ctx.author} Why are you even trying...',
+                                   timestamp=ctx.message.created_at,
+                                   color=lunablue)
+            embed.set_footer(text=f"LUNA✱ ✦ Created by andzn", icon_url="https://i.ibb.co/yBXMVKG/icon.png")
+            await ctx.send(embed=embed)
 
     @commands.command(aliases=['logoff', 'terminate'], hidden=True)
     @commands.is_owner()

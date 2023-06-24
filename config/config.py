@@ -24,6 +24,7 @@ token = token
 version = "v1.3/2023"
 pythonv = sys.version[:6]
 nextcordv = nextcord.__version__
+coloramav = colorama.__version__
 creator = "andzn"
 now = datetime.datetime.now()
 seperator = "──────────────────────────────────"
